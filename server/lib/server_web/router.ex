@@ -17,6 +17,10 @@ defmodule ServerWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
+
+    post "/", PageController, :upload
+
+    get "/download/:file", PageController, :download
   end
 
   # Other scopes may use custom stacks.
