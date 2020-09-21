@@ -1,6 +1,8 @@
 defmodule ServerWeb.PageController do
   use ServerWeb, :controller
 
+  @upload_folder Application.get_env(:server, :upload_folder)
+
   def index(conn, _params) do
     {:ok, files} = get_files()
 
@@ -26,7 +28,7 @@ defmodule ServerWeb.PageController do
   def get_files() do
     path = get_path()
 
-    case File.mkdir(path) do
+    case File.mkdir_p(path) do
       :ok ->
         File.ls(path)
 
@@ -39,6 +41,6 @@ defmodule ServerWeb.PageController do
   end
 
   def get_path() do
-    Path.join([File.cwd!(), "uploaded"])
+    Path.join([@upload_folder, "uploaded"])
   end
 end

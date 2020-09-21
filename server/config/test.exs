@@ -6,5 +6,7 @@ config :server, ServerWeb.Endpoint,
   http: [port: 4002],
   server: false
 
+config :server, upload_folder: Path.join(System.tmp_dir!, "server_test")
+
 # Print only warnings and errors during test
 config :logger, level: :warn
